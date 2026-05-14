@@ -1,0 +1,46 @@
+# 01 — Proposal: {{ spec.name }}
+
+## Contexto
+
+Stack: **FastAPI · Python · Clean Architecture · Pydantic · SQLAlchemy / Neon Postgres**
+
+{{ spec.context }}
+
+## Objetivo
+
+{{ spec.description }}
+
+## Alcance (IN SCOPE)
+
+**Nuevos endpoints/módulos:**
+{{ spec.new_components }}
+
+**Capas afectadas:**
+- [ ] Domain (schemas Pydantic, servicios de negocio)
+- [ ] Infrastructure (repositorios, DB models, migrations)
+- [ ] Presentation (routers FastAPI, middlewares)
+
+## Fuera de alcance (OUT OF SCOPE)
+
+{% if spec.out_of_scope %}
+{{ spec.out_of_scope }}
+{% else %}
+- Funcionalidades no listadas en los criterios de aceptación.
+- Refactors de endpoints existentes no relacionados.
+- Cambios de infraestructura cloud salvo los listados.
+{% endif %}
+
+## Servicios externos / integraciones
+
+{% if spec.external_services %}
+{{ spec.external_services }}
+{% else %}
+Ninguno adicional.
+{% endif %}
+
+## Archivos/módulos existentes que se modificarán
+
+{{ spec.modified_files }}
+
+---
+*Generado con Gandalf · {{ date }}*

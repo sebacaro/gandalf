@@ -1,0 +1,46 @@
+# 01 — Proposal: {{ spec.name }}
+
+## Contexto
+
+Stack: **Flutter · Clean Architecture · BLoC · Either<Failure,T>**
+
+{{ spec.context }}
+
+## Objetivo
+
+{{ spec.description }}
+
+## Alcance (IN SCOPE)
+
+**Nuevos componentes/pantallas:**
+{{ spec.new_components }}
+
+**Capas de Clean Architecture afectadas:**
+- [ ] Domain (entities, use cases, repository interfaces)
+- [ ] Data (repository impl, data sources, DTOs)
+- [ ] Presentation (pages, widgets, BLoC/Cubit)
+
+## Fuera de alcance (OUT OF SCOPE)
+
+{% if spec.out_of_scope %}
+{{ spec.out_of_scope }}
+{% else %}
+- Funcionalidades no listadas en los criterios de aceptación.
+- Rediseño de pantallas existentes no relacionadas.
+- Cambios en la API backend salvo los contratos definidos en `03_design.md`.
+{% endif %}
+
+## Servicios externos / APIs involucradas
+
+{% if spec.external_services %}
+{{ spec.external_services }}
+{% else %}
+Ninguno. Solo lógica local o APIs ya integradas.
+{% endif %}
+
+## Archivos/módulos existentes que se modificarán
+
+{{ spec.modified_files }}
+
+---
+*Generado con Gandalf · {{ date }}*

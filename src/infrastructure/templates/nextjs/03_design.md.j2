@@ -1,0 +1,77 @@
+# 03 — Design: {{ spec.name }}
+
+## Arquitectura
+
+**Next.js 15 App Router · TypeScript · Tailwind CSS · shadcn/ui**
+
+### Estructura
+
+```
+app/
+└── (routes)/
+    └── [feature-slug]/
+        ├── page.tsx         ← Server Component (data fetching)
+        ├── layout.tsx       ← Layout si aplica
+        └── _components/     ← Client Components
+            └── [Feature]Client.tsx
+
+components/
+└── [feature-slug]/
+    └── [Component].tsx
+
+lib/
+└── [feature-slug]/
+    ├── actions.ts           ← Server Actions
+    ├── queries.ts           ← DB queries
+    └── types.ts             ← TypeScript types
+```
+
+## Componentes nuevos
+
+{{ spec.new_components }}
+
+## Archivos existentes modificados
+
+{{ spec.modified_files }}
+
+## Estrategia de rendering
+
+| Componente | Tipo | Razón |
+|-----------|------|-------|
+| `page.tsx` | Server Component | Data fetching server-side |
+| `[Feature]Client.tsx` | Client Component | Interactividad/estado |
+
+## Types
+
+```typescript
+interface [Feature] {
+  id: string;
+  // campos...
+  createdAt: Date;
+}
+
+interface [Feature]FormData {
+  // campos de formulario
+}
+```
+
+## Server Actions / API
+
+```typescript
+// lib/[feature-slug]/actions.ts
+"use server";
+
+export async function create[Feature](data: [Feature]FormData): Promise<{ success: boolean; error?: string }> {
+  // validación + DB + revalidatePath
+}
+```
+
+## Decisiones técnicas
+
+| Decisión | Justificación |
+|----------|---------------|
+| Server Component vs Client | [Completar según necesidad de estado/interactividad] |
+| [Otra decisión] | [Completar] |
+
+---
+*Generado con Gandalf · {{ date }}*

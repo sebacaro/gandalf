@@ -1,0 +1,37 @@
+# 02 — Requirements: {{ spec.name }}
+
+## Criterios de aceptación (Gherkin)
+
+{% for criterion in spec.acceptance_criteria %}
+### Escenario {{ loop.index }}
+
+```gherkin
+{{ criterion }}
+```
+
+{% endfor %}
+
+## Edge Cases
+
+{{ spec.edge_cases }}
+
+## Reglas de negocio
+
+- Respetar el contrato Either<Failure, T> en todos los repositorios.
+- No emitir estados mutados desde BLoC — siempre emitir nuevo estado.
+- Registrar en `injection_container.dart` toda clase nueva.
+- Los criterios de aceptación son el contrato mínimo.
+
+## Accesibilidad
+
+- Agregar `Semantics` labels en widgets interactivos nuevos.
+- Verificar que `MediaQuery.disableAnimations` se respeta en animaciones.
+
+## Escenarios de error
+
+- Pérdida de conectividad: mostrar estado de error con opción de retry.
+- Timeout de API: mostrar mensaje de error descriptivo.
+- Input inválido: validar en el boundary de la UI antes de llamar al use case.
+
+---
+*Generado con Gandalf · {{ date }}*

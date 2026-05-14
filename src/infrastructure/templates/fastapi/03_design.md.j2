@@ -1,0 +1,70 @@
+# 03 — Design: {{ spec.name }}
+
+## Arquitectura
+
+**FastAPI · Pydantic v2 · SQLAlchemy · Alembic · Neon Postgres**
+
+### Estructura de módulo
+
+```
+app/
+└── [feature-slug]/
+    ├── router.py        ← endpoints FastAPI
+    ├── service.py       ← lógica de negocio
+    ├── repository.py    ← acceso a DB
+    ├── schemas.py       ← Pydantic models (Request/Response)
+    └── models.py        ← SQLAlchemy ORM models
+```
+
+## Clases / módulos nuevos
+
+{{ spec.new_components }}
+
+## Archivos existentes modificados
+
+{{ spec.modified_files }}
+
+## Endpoints nuevos
+
+| Method | Path | Request | Response | Auth |
+|--------|------|---------|----------|------|
+| [GET/POST/PUT/DELETE] | `/api/v1/[path]` | `[RequestSchema]` | `[ResponseSchema]` | [JWT/None] |
+
+## Modelos de datos
+
+```python
+class [Entity](Base):
+    __tablename__ = "[table_name]"
+    id: Mapped[UUID] = mapped_column(primary_key=True, default=uuid4)
+    # campos...
+    created_at: Mapped[datetime] = mapped_column(server_default=func.now())
+```
+
+## Schemas Pydantic
+
+```python
+class [Entity]Request(BaseModel):
+    # campos de entrada
+    pass
+
+class [Entity]Response(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    # campos de salida
+    pass
+```
+
+## Migración de DB
+
+```bash
+alembic revision --autogenerate -m "add_[feature_slug]_table"
+alembic upgrade head
+```
+
+## Decisiones técnicas
+
+| Decisión | Justificación |
+|----------|---------------|
+| [Completar] | [Completar] |
+
+---
+*Generado con Gandalf · {{ date }}*

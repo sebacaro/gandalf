@@ -1,0 +1,86 @@
+# 03 — Design: {{ spec.name }}
+
+## Arquitectura
+
+**Flutter · Clean Architecture · BLoC · Either<Failure,T> · Equatable**
+
+### Capas afectadas
+
+```
+lib/
+├── features/
+│   └── [feature-slug]/
+│       ├── domain/
+│       │   ├── entities/       ← nuevas entidades
+│       │   ├── repositories/   ← interfaces (contratos)
+│       │   └── use_cases/      ← lógica de negocio
+│       ├── data/
+│       │   ├── datasources/    ← remote/local data sources
+│       │   ├── models/         ← DTOs con fromJson/toJson
+│       │   └── repositories/   ← implementaciones
+│       └── presentation/
+│           ├── bloc/           ← BLoC/Cubit + States + Events
+│           ├── pages/          ← pantallas completas
+│           └── widgets/        ← widgets reutilizables
+```
+
+## Clases nuevas
+
+{{ spec.new_components }}
+
+## Clases existentes modificadas
+
+{{ spec.modified_files }}
+
+## Decisiones técnicas
+
+| Decisión | Justificación |
+|----------|---------------|
+| BLoC vs Cubit | [Cubit si no hay eventos complejos, BLoC si hay múltiples eventos] |
+| [Otra decisión] | [Completar con contexto del repo] |
+
+## Contrato de repositorio
+
+```dart
+abstract class [FeatureRepository] {
+  Future<Either<Failure, [ReturnType]>> [methodName]([params]);
+}
+```
+
+## Estados del BLoC/Cubit
+
+```dart
+// States
+class [Feature]Initial extends [Feature]State {}
+class [Feature]Loading extends [Feature]State {}
+class [Feature]Success extends [Feature]State {
+  final [DataType] data;
+}
+class [Feature]Failure extends [Feature]State {
+  final String message;
+}
+```
+
+## Inyección de dependencias
+
+Agregar en `lib/injection_container.dart`:
+```dart
+// [Feature] Use Cases
+sl.registerLazySingleton(() => [FeatureUseCase](repository: sl()));
+// [Feature] Repository
+sl.registerLazySingleton<[FeatureRepository]>(() => [FeatureRepositoryImpl](dataSource: sl()));
+// [Feature] BLoC
+sl.registerFactory(() => [FeatureBloc](useCase: sl()));
+```
+
+## Routing
+
+{% if spec.new_components %}
+Nuevas rutas en `RouteNames` y `app_router.dart`:
+```dart
+static const String [featureName] = '/[feature-slug]';
+```
+{% endif %}
+
+---
+*Generado con Gandalf · {{ date }}*

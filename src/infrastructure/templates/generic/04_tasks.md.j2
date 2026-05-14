@@ -1,0 +1,43 @@
+# 04 — Tasks: {{ spec.name }}
+
+> Checklist atómico. Completar en orden. Marcar cada tarea con `[x]` al terminar.
+
+## Setup
+
+- [ ] [SETUP] Crear estructura de carpetas para la feature
+- [ ] [SETUP] Agregar dependencias nuevas si aplica (actualizar requirements/package.json)
+
+## Implementación principal
+
+- [ ] [CORE] Implementar lógica de negocio principal
+- [ ] [CORE] Implementar {{ spec.new_components }}
+- [ ] [CORE] Conectar con módulos existentes: {{ spec.modified_files }}
+{% if spec.external_services %}
+- [ ] [INFRA] Integrar servicio externo: {{ spec.external_services }}
+{% endif %}
+
+## Validación y edge cases
+
+{% for edge in spec.edge_cases.split('\n') if edge.strip() %}
+- [ ] [EDGE] Manejar: {{ edge.strip() }}
+{% endfor %}
+
+## Tests
+
+- [ ] [TEST] Escribir unit tests para la lógica de negocio
+- [ ] [TEST] Escribir integration tests para el flujo completo
+- [ ] [TEST] Verificar cada criterio de aceptación de `02_requirements.md`
+
+## Integración y QA
+
+- [ ] [QA] Prueba manual del flujo principal (happy path)
+- [ ] [QA] Prueba manual de edge cases
+- [ ] [QA] Verificar que features existentes no se rompieron (regression)
+
+## Cierre
+
+- [ ] [CLOSE] Mover carpeta a `specs/done/{{ spec.slug }}/`
+- [ ] [CLOSE] Hacer commit con mensaje: `feat({{ spec.slug }}): [descripción breve]`
+
+---
+*Generado con Gandalf · {{ date }}*

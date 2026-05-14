@@ -1,0 +1,41 @@
+# 01 — Proposal: {{ spec.name }}
+
+## Contexto
+
+{{ spec.context }}
+
+## Objetivo
+
+{{ spec.description }}
+
+## Stack
+
+**{{ stack_display }}**
+
+## Alcance (IN SCOPE)
+
+- {{ spec.new_components }}
+
+## Fuera de alcance (OUT OF SCOPE)
+
+{% if spec.out_of_scope %}
+{{ spec.out_of_scope }}
+{% else %}
+- Funcionalidades que no estén listadas en los criterios de aceptación.
+- Optimizaciones de rendimiento no relacionadas con esta feature.
+{% endif %}
+
+## Servicios externos involucrados
+
+{% if spec.external_services %}
+{{ spec.external_services }}
+{% else %}
+Ninguno.
+{% endif %}
+
+## Archivos/módulos que se modificarán
+
+{{ spec.modified_files }}
+
+---
+*Generado con Gandalf · {{ date }}*

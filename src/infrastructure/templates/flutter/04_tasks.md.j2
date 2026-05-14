@@ -1,0 +1,78 @@
+# 04 — Tasks: {{ spec.name }}
+
+> Checklist atómico para implementar con Cursor (`sdd-apply`).
+> Marcar `[x]` al completar cada tarea. Seguir el orden: Domain → Data → Presentation → Tests → Integración.
+
+## Setup
+
+- [ ] [SETUP] Crear estructura de carpetas `lib/features/{{ spec.slug }}/domain/data/presentation/`
+- [ ] [SETUP] Crear carpeta `specs/in-progress/{{ spec.slug }}/` (ya existe si usaste Gandalf)
+
+## Domain Layer
+
+- [ ] [DOMAIN] Crear entidades nuevas con Equatable
+- [ ] [DOMAIN] Crear interface(s) de repositorio con contratos Either<Failure,T>
+- [ ] [DOMAIN] Crear use case(s): `{{ spec.new_components }}`
+- [ ] [DOMAIN] Crear Failure específico si aplica
+
+## Data Layer
+
+- [ ] [DATA] Crear modelos (DTOs) con fromJson/toJson
+- [ ] [DATA] Crear abstract data source
+- [ ] [DATA] Implementar remote data source (API calls)
+{% if spec.external_services %}
+- [ ] [DATA] Integrar: {{ spec.external_services }}
+{% endif %}
+- [ ] [DATA] Implementar repository (convierte excepciones a Either<Failure,T>)
+
+## Presentation Layer
+
+- [ ] [PRES] Crear States: Initial, Loading, Success, Failure (Equatable)
+- [ ] [PRES] Crear Events si se usa BLoC (no Cubit)
+- [ ] [PRES] Implementar BLoC/Cubit con lógica de estados
+- [ ] [PRES] Crear Page widget con BlocProvider
+- [ ] [PRES] Implementar UI: {{ spec.new_components }}
+- [ ] [PRES] Agregar Semantics labels en widgets interactivos
+- [ ] [PRES] Respetar `MediaQuery.disableAnimations` en animaciones
+
+## Routing
+
+- [ ] [ROUTE] Agregar ruta en `RouteNames`
+- [ ] [ROUTE] Registrar ruta en `app_router.dart`
+
+## Inyección de dependencias
+
+- [ ] [DI] Registrar use cases en `injection_container.dart`
+- [ ] [DI] Registrar repository y datasource
+- [ ] [DI] Registrar BLoC/Cubit como Factory
+
+## Tests
+
+- [ ] [TEST] Unit test del use case (mock repository)
+- [ ] [TEST] Unit test del repositorio (mock datasource)
+- [ ] [TEST] Widget test de la Page principal
+- [ ] [TEST] Widget test de BLoC/Cubit con estados
+- [ ] [TEST] Verificar cada criterio de aceptación de `02_requirements.md`
+
+## Edge Cases
+
+{% for edge in spec.edge_cases.split('\n') if edge.strip() %}
+- [ ] [EDGE] Implementar/verificar: {{ edge.strip() }}
+{% endfor %}
+
+## Integración y QA
+
+- [ ] [QA] `flutter analyze` sin errores ni warnings
+- [ ] [QA] `flutter test` todos los tests pasan
+- [ ] [QA] Prueba manual: flujo principal (happy path)
+- [ ] [QA] Prueba manual: casos de error y edge cases
+- [ ] [QA] Regression: verificar que otras features existentes no se rompieron
+
+## Cierre
+
+- [ ] [CLOSE] Mover carpeta a `specs/done/{{ spec.slug }}/`
+- [ ] [CLOSE] Commit: `feat({{ spec.slug }}): [descripción breve]`
+- [ ] [CLOSE] PR con referencia a los 4 archivos de spec
+
+---
+*Generado con Gandalf · {{ date }}*

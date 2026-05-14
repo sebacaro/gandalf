@@ -1,0 +1,66 @@
+# 04 — Tasks: {{ spec.name }}
+
+> Checklist atómico. Marcar `[x]` al completar. Orden: DB → Service → Router → Tests.
+
+## Setup
+
+- [ ] [SETUP] Crear módulo `app/{{ spec.slug }}/`
+- [ ] [SETUP] Agregar router al main app en `app/main.py`
+
+## Base de datos
+
+- [ ] [DB] Crear SQLAlchemy model en `models.py`
+- [ ] [DB] Generar migración Alembic: `alembic revision --autogenerate -m "add_{{ spec.slug }}"`
+- [ ] [DB] Aplicar migración: `alembic upgrade head`
+
+## Schemas
+
+- [ ] [SCHEMA] Crear `[Feature]Request` Pydantic schema
+- [ ] [SCHEMA] Crear `[Feature]Response` Pydantic schema
+- [ ] [SCHEMA] Agregar validaciones en los schemas
+
+## Repository
+
+- [ ] [REPO] Implementar `[Feature]Repository` con operaciones CRUD
+- [ ] [REPO] Manejo de errores de DB (IntegrityError, etc.)
+
+## Service
+
+- [ ] [SERVICE] Implementar lógica de negocio en `service.py`
+{% if spec.external_services %}
+- [ ] [SERVICE] Integrar: {{ spec.external_services }}
+{% endif %}
+- [ ] [SERVICE] Manejar errores y casos de borde
+
+## Router / Endpoints
+
+- [ ] [ROUTER] Implementar endpoints: {{ spec.new_components }}
+- [ ] [ROUTER] Agregar autenticación/autorización si aplica
+- [ ] [ROUTER] Documentar en OpenAPI (description, response_model, status_code)
+
+## Edge Cases
+
+{% for edge in spec.edge_cases.split('\n') if edge.strip() %}
+- [ ] [EDGE] Manejar: {{ edge.strip() }}
+{% endfor %}
+
+## Tests
+
+- [ ] [TEST] Unit tests para service (mock repository)
+- [ ] [TEST] Integration tests para endpoints con TestClient
+- [ ] [TEST] Verificar cada criterio de `02_requirements.md`
+- [ ] [TEST] Verificar respuestas de error (4xx, 5xx)
+
+## QA
+
+- [ ] [QA] `pytest` todos los tests pasan
+- [ ] [QA] Revisar OpenAPI docs en `/docs`
+- [ ] [QA] Prueba manual con curl/Postman del flujo principal
+
+## Cierre
+
+- [ ] [CLOSE] Mover a `specs/done/{{ spec.slug }}/`
+- [ ] [CLOSE] Commit: `feat({{ spec.slug }}): [descripción breve]`
+
+---
+*Generado con Gandalf · {{ date }}*

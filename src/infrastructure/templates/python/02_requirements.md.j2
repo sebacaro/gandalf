@@ -1,0 +1,24 @@
+# 02 — Requirements: {{ spec.name }}
+
+## Criterios de aceptación (Gherkin)
+
+{% for criterion in spec.acceptance_criteria %}
+### Escenario {{ loop.index }}: {{ criterion.split('\n')[0] | truncate(60, True, '') }}
+
+```gherkin
+{{ criterion }}
+```
+
+{% endfor %}
+
+## Edge Cases
+
+{{ spec.edge_cases }}
+
+## Reglas de negocio
+
+- Los criterios de aceptación son el contrato mínimo. Cualquier comportamiento no especificado debe mantenerse igual que antes de la feature.
+- Validar todos los inputs del usuario en el boundary de la aplicación.
+
+---
+*Generado con Gandalf · {{ date }}*

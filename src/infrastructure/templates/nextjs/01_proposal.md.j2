@@ -1,0 +1,48 @@
+# 01 — Proposal: {{ spec.name }}
+
+## Contexto
+
+Stack: **Next.js 15 · App Router · TypeScript · Tailwind CSS · shadcn/ui**
+
+{{ spec.context }}
+
+## Objetivo
+
+{{ spec.description }}
+
+## Alcance (IN SCOPE)
+
+**Nuevos componentes/páginas/rutas:**
+{{ spec.new_components }}
+
+**Áreas del stack afectadas:**
+- [ ] App Router (nuevas rutas, layouts, pages)
+- [ ] Server Components / Server Actions
+- [ ] Client Components (interactividad)
+- [ ] API Routes (si aplica)
+- [ ] Base de datos (si aplica)
+
+## Fuera de alcance (OUT OF SCOPE)
+
+{% if spec.out_of_scope %}
+{{ spec.out_of_scope }}
+{% else %}
+- Páginas o componentes no listados.
+- Cambios de diseño en páginas existentes no relacionadas.
+- SEO y metadata salvo lo explícitamente solicitado.
+{% endif %}
+
+## Servicios externos
+
+{% if spec.external_services %}
+{{ spec.external_services }}
+{% else %}
+Ninguno adicional.
+{% endif %}
+
+## Archivos existentes que se modificarán
+
+{{ spec.modified_files }}
+
+---
+*Generado con Gandalf · {{ date }}*

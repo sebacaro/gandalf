@@ -1,0 +1,60 @@
+# 04 — Tasks: {{ spec.name }}
+
+> Checklist atómico para Cursor. Marcar `[x]` al completar.
+
+## Setup
+
+- [ ] [SETUP] Crear estructura de carpetas para la feature
+
+## Types & schemas
+
+- [ ] [TYPE] Definir TypeScript types/interfaces en `lib/{{ spec.slug }}/types.ts`
+- [ ] [TYPE] Agregar validación con Zod si aplica
+
+## Base de datos (si aplica)
+
+- [ ] [DB] Crear/actualizar schema de base de datos
+- [ ] [DB] Crear queries en `lib/{{ spec.slug }}/queries.ts`
+
+## Server Actions / API
+
+- [ ] [ACTION] Implementar Server Actions en `lib/{{ spec.slug }}/actions.ts`
+{% if spec.external_services %}
+- [ ] [ACTION] Integrar: {{ spec.external_services }}
+{% endif %}
+- [ ] [ACTION] Agregar manejo de errores y validación de input
+
+## Componentes
+
+- [ ] [UI] Crear Server Component `page.tsx` con data fetching
+- [ ] [UI] Crear Client Components para interactividad
+- [ ] [UI] Implementar UI: {{ spec.new_components }}
+- [ ] [UI] Asegurar diseño responsive con Tailwind
+- [ ] [UI] Verificar accesibilidad (aria labels, keyboard nav)
+
+## Edge Cases
+
+{% for edge in spec.edge_cases.split('\n') if edge.strip() %}
+- [ ] [EDGE] Manejar: {{ edge.strip() }}
+{% endfor %}
+
+## Tests
+
+- [ ] [TEST] Unit tests para Server Actions
+- [ ] [TEST] Component tests con React Testing Library
+- [ ] [TEST] Verificar cada criterio de `02_requirements.md`
+
+## QA
+
+- [ ] [QA] `npm run build` sin errores ni type errors
+- [ ] [QA] Prueba manual en desarrollo
+- [ ] [QA] Verificar en mobile (responsive)
+- [ ] [QA] Regression: otras páginas no se rompieron
+
+## Cierre
+
+- [ ] [CLOSE] Mover a `specs/done/{{ spec.slug }}/`
+- [ ] [CLOSE] Commit: `feat({{ spec.slug }}): [descripción breve]`
+
+---
+*Generado con Gandalf · {{ date }}*

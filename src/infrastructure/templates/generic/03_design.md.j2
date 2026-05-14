@@ -1,0 +1,45 @@
+# 03 — Design: {{ spec.name }}
+
+## Stack
+
+**{{ stack_display }}**
+
+## Componentes / módulos nuevos
+
+{{ spec.new_components }}
+
+## Archivos existentes modificados
+
+{{ spec.modified_files }}
+
+## Decisiones técnicas
+
+| Decisión | Justificación |
+|----------|---------------|
+| [Completar en Cursor con contexto del repo] | [Completar] |
+
+## Flujo de datos
+
+```
+[Completar: entrada → procesamiento → salida]
+```
+
+## Contratos de interfaz / API
+
+```
+[Completar: definir firmas de funciones, endpoints, o contratos de UI]
+```
+
+## Consideraciones de seguridad
+
+- Validar todos los inputs en el boundary de entrada.
+- No exponer datos sensibles en logs ni en la UI.
+
+## Testing
+
+- Unit tests para cada función de lógica de negocio nueva.
+- Integration tests para flujos completos.
+- Manual QA según los criterios de `02_requirements.md`.
+
+---
+*Generado con Gandalf · {{ date }}*
